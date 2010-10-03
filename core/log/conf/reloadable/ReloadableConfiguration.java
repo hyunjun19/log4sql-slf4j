@@ -30,6 +30,7 @@ public class ReloadableConfiguration extends HashMap {
     static String viewInternalException;
     static String viewAppoint;
     static String asynchronous;
+    static String useSlf4j;
 
     private ReloadableConfiguration() {
         try {
@@ -77,6 +78,11 @@ public class ReloadableConfiguration extends HashMap {
         } catch(Throwable t) {
             new InternalException("query.logging.asynchronous value must be Boolean [true or false]");
         }
+        try {
+        	super.put("log.slf4j.use", new Boolean(ReloadableConfiguration.useSlf4j));
+        } catch(Throwable t) {
+        	new InternalException("log.slf4j.use value must be Boolean [true or false]");
+        }
 
         /**
          * fieltering method name
@@ -102,6 +108,7 @@ public class ReloadableConfiguration extends HashMap {
             viewInternalException=ResourceBundle.getBundle(PROPERTY_POSITION).getString("query.logging.view.internal.exception");
             viewAppoint=ResourceBundle.getBundle(PROPERTY_POSITION).getString("query.logging.view.appoint");
             asynchronous=ResourceBundle.getBundle(PROPERTY_POSITION).getString("query.logging.asynchronous");
+            asynchronous=ResourceBundle.getBundle(PROPERTY_POSITION).getString("log.slf4j.use");
         } catch(Throwable t) {
             new InternalException(t);
         }
@@ -148,6 +155,10 @@ public class ReloadableConfiguration extends HashMap {
     public boolean getAsynchronous() {
         return ((Boolean) super.get("log.asynchronous")).booleanValue();
     }
+    
+    public boolean getUseSlf4j() {
+    	return ((Boolean) super.get("log.slf4j.use")).booleanValue();
+    }
 
     public void setLogLevel(int val) {
         super.put("log.level", new Integer(val));
@@ -183,6 +194,10 @@ public class ReloadableConfiguration extends HashMap {
 
     public void setAsynchronous(boolean asynchronous) {
         super.put("log.asynchronous", new Boolean(asynchronous));
+    }
+    
+    public void setUseSlf4j(boolean useSlf4j) {
+    	super.put("log.slf4j.use", new Boolean(useSlf4j));
     }
 
     public boolean isFieltered(String fielterdMethodName) {
