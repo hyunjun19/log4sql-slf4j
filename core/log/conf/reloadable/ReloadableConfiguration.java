@@ -108,7 +108,7 @@ public class ReloadableConfiguration extends HashMap {
             viewInternalException=ResourceBundle.getBundle(PROPERTY_POSITION).getString("query.logging.view.internal.exception");
             viewAppoint=ResourceBundle.getBundle(PROPERTY_POSITION).getString("query.logging.view.appoint");
             asynchronous=ResourceBundle.getBundle(PROPERTY_POSITION).getString("query.logging.asynchronous");
-            asynchronous=ResourceBundle.getBundle(PROPERTY_POSITION).getString("log.slf4j.use");
+            useSlf4j=ResourceBundle.getBundle(PROPERTY_POSITION).getString("log.slf4j.use");
         } catch(Throwable t) {
             new InternalException(t);
         }

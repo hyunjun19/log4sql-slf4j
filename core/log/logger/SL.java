@@ -12,7 +12,7 @@ import core.log.logger.resource.LogResource;
 
 /**
  * Author : song insup email : insup74@empal.com home page:
- * http://log4sql.sourceforge.net version : 1.0 Date Time: 2007. 9. 12 ø¿»ƒ
+ * http://log4sql.sourceforge.net version : 1.0 Date Time: 2007. 9. 12 ÔøΩÔøΩÔøΩÔøΩ
  * 2:15:10 Content : Usage :
  */
 public class SL {
@@ -134,7 +134,7 @@ public class SL {
 	}
 
 	/**
-	 * ∑Œ±◊∑π∫ß¿ª ¡ˆ¡§«—¥Ÿ.
+	 * ÔøΩŒ±◊∑ÔøΩÔøΩÔøΩÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩÔøΩ—¥ÔøΩ.
 	 * 
 	 * @param logLevel
 	 */
@@ -456,7 +456,7 @@ public class SL {
 			sb.append("[").append(now()).append("]");
 			sb.append(" [").append(getErrorName()).append("]");
 		}
-		sb.append("°∫").append(positionInfo.getClassName()).append(":").append(positionInfo.getMethodName()).append("(").append(positionInfo.getLineNumber()).append(")°ª\n");
+		sb.append("„Äé").append(positionInfo.getClassName()).append(":").append(positionInfo.getMethodName()).append("(").append(positionInfo.getLineNumber()).append(")„Äè\n");
 		sb.append(exceptionClassName).append("\n");
 		sb.append(positionInfo.getMsg() != null ? positionInfo.getMsg() : "").append("\n");
 		outter(sb.toString());
@@ -468,7 +468,7 @@ public class SL {
 			sb.append("[").append(now()).append("]");
 			sb.append(" [").append(getErrorName()).append("]");
 		}
-		sb.append("°∫").append(positionInfo.getClassName()).append(":").append(positionInfo.getMethodName()).append("(").append(positionInfo.getLineNumber()).append(")°ª\n");
+		sb.append("„Äé").append(positionInfo.getClassName()).append(":").append(positionInfo.getMethodName()).append("(").append(positionInfo.getLineNumber()).append(")„Äè\n");
 		sb.append(exceptionClassName).append("\n");
 		sb.append(message).append("\n");
 		sb.append(positionInfo.getMsg() != null ? positionInfo.getMsg() : "").append("\n");
@@ -481,7 +481,7 @@ public class SL {
 			sb.append("[").append(now()).append("]");
 			sb.append(" [").append(getErrorName()).append("]");
 		}
-		sb.append("°∫").append(positionInfo.getClassName()).append(":").append(positionInfo.getMethodName()).append("(").append(positionInfo.getLineNumber()).append(")°ª\n");
+		sb.append("„Äé").append(positionInfo.getClassName()).append(":").append(positionInfo.getMethodName()).append("(").append(positionInfo.getLineNumber()).append(")„Äè\n");
 		sb.append(positionInfo.getMsg() != null ? positionInfo.getMsg() : "").append("\n");
 		outter(sb.toString());
 	}
@@ -492,7 +492,7 @@ public class SL {
 			sb.append("[").append(now()).append("]");
 			sb.append(" [").append(getErrorName()).append("]");
 		}
-		sb.append("°∫").append(positionInfo.getClassName()).append(":").append(positionInfo.getMethodName()).append("(").append(positionInfo.getLineNumber()).append(")°ª");
+		sb.append("„Äé").append(positionInfo.getClassName()).append(":").append(positionInfo.getMethodName()).append("(").append(positionInfo.getLineNumber()).append(")„Äè");
 		sb.append(" Elapsed Time [").append(message).append("]\n");
 		sb.append(positionInfo.getMsg() != null ? positionInfo.getMsg() : "").append("\n");
 		sb.append(result != null ? "Query Result" + result + "row\n" : "\n");
@@ -505,8 +505,8 @@ public class SL {
 			sb.append("[").append(now()).append("]");
 			sb.append(" [").append(getErrorName()).append("]");
 		}
-		sb.append("°∫").append(positionInfo.getClassName()).append(":");
-		sb.append(positionInfo.getMethodName()).append("(").append(positionInfo.getLineNumber()).append(")°ª");
+		sb.append("„Äé").append(positionInfo.getClassName()).append(":");
+		sb.append(positionInfo.getMethodName()).append("(").append(positionInfo.getLineNumber()).append(")„Äè");
 		sb.append(" Elapsed Time [").append(message).append("]\n");
 		sb.append(positionInfo.getMsg() != null ? positionInfo.getMsg() : "").append("\n");
 		if (logResource.isSelect() && !ReloadableConfiguration.getInstance().getFixedSelectPosition())
@@ -523,7 +523,7 @@ public class SL {
 			sb.append("[").append(now()).append("]");
 			sb.append(" [").append(getErrorName()).append("]");
 		}
-		sb.append("°∫").append(positionInfo.getClassName()).append(":").append(positionInfo.getMethodName()).append("(").append(positionInfo.getLineNumber()).append(")°ª\n");
+		sb.append("„Äé").append(positionInfo.getClassName()).append(":").append(positionInfo.getMethodName()).append("(").append(positionInfo.getLineNumber()).append(")„Äè\n");
 		sb.append(message).append("\n").append(positionInfo.getMsg()).append("\n");
 		outter(sb.toString());
 	}
@@ -534,12 +534,14 @@ public class SL {
 	}
 
 	/**
-	 * 2010.10.03 slf4j ¿˚øÎ
+	 * 2010.10.03 slf4j ÔøΩÔøΩÔøΩ
 	 * 
 	 * @param message
 	 */
 	private void outter(String message) {
-		if (ReloadableConfiguration.getInstance().getUseSlf4j()) {
+		if (!ReloadableConfiguration.getInstance().getUseSlf4j()) {
+			System.out.println(message);
+		} else {
 			switch (ReloadableConfiguration.getInstance().getLogLevel()) {
 			case DEBUG:
 				logger.debug(message);
@@ -557,10 +559,8 @@ public class SL {
 				logger.error(message);
 				break;
 			default:
-				// no message
+				logger.info(message);
 			}
-		} else {
-			System.out.println(message);
 		}
 	}
 

@@ -1,0 +1,5 @@
+이 프로젝트는 log4sql(http://log4sql.sourceforge.net/) 프로젝트를 기반으로 간단히 slf4j를 적용한 프로젝트 입니다.
+이 프로젝트는 단기 프로젝트이며 크리티컬한 버그가 발생되지 않는 한 더 이상의 개발은 없을 것입니다.
+
+by hyunjun19
+http://westzero.net
